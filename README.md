@@ -1,4 +1,4 @@
-# StubHubApi
+# StubHubApi [![Code Climate](https://codeclimate.com/github/hashdog/stub_hub_api/badges/gpa.svg)](https://codeclimate.com/github/hashdog/stub_hub_api)
 
 This gem provides access to add, edit and delete listings appearing on StubHub.
 
