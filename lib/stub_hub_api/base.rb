@@ -23,6 +23,14 @@ module StubHubApi
       end
     end
 
+    def post_multi_part_query_api url, payload, file_path
+      session.post do |req|
+        req.url url
+        req.headers['Content-Type'] = 'mulitpart/form-data'
+        req.body = Faraday::UploadIO.new(file_path, 'application/pdf')
+      end.body
+    end
+
     def delete_query_api url
       session.delete(make_request_url(url, {}))
     end
