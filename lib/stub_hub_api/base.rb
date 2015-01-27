@@ -32,7 +32,7 @@ module StubHubApi
     end
 
     def delete_query_api url
-      session.delete(make_request_url(url, {}))
+      session.delete(make_request_url(url, {})).body
     end
 
     def put_query_api url, payload = false, options
