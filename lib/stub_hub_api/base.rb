@@ -26,8 +26,9 @@ module StubHubApi
     def post_multi_part_query_api url, options, file_path
       session.post do |req|
         req.url make_request_url(url, options)
-        req.headers['Content-Type'] = 'mulitpart/form-data'
-        req.body = Faraday::UploadIO.new(file_path, 'application/pdf')
+        req.headers['Content-Type'] = 'multipart/form-data'
+        req.body = {}
+        req.body[:file] = Faraday::UploadIO.new(open(file_path).path, 'application/pdf')
       end.body
     end
 
@@ -79,8 +80,8 @@ module StubHubApi
       @connection = ::Faraday.new current_base_url, ssl: {verify: false} do |conn|
         conn.use Faraday::Response::StubHub
         conn.request  :url_encoded
+        conn.request  :multipart
         conn.response :logger
-        conn.response :chunked
         conn.adapter  Faraday.default_adapter
       end
       @connection.authorization :Bearer, token
