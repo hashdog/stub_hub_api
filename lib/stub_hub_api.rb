@@ -1,5 +1,6 @@
 require 'json'
 require 'faraday'
+require 'faraday_middleware'
 
 require_relative 'stub_hub_api/version'
 require_relative 'stub_hub_api/response'
