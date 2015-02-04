@@ -10,6 +10,7 @@ require_relative 'stub_hub_api/account_management_sale'
 require_relative 'stub_hub_api/event'
 require_relative 'stub_hub_api/listing'
 require_relative 'stub_hub_api/search'
+require_relative 'stub_hub_api/fulfillment'
 require_relative 'stub_hub_api/alert'
 
 

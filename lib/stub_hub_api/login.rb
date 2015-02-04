@@ -28,6 +28,7 @@ module StubHubApi
 
       @conn = Faraday.new(:url => base_url, :ssl => {:verify => false}) do |faraday|
         faraday.request  :url_encoded
+        faraday.response :logger
         faraday.adapter  Faraday.default_adapter
       end
       @conn.basic_auth(@consumer_key, @consumer_secret)
@@ -35,7 +36,7 @@ module StubHubApi
     end
 
     def init
-      @response = session.post '/login', { grant_type: 'password', username: @username, password: @password, scope: 'SANDBOX' }
+      @response = session.post '/login', { grant_type: 'password', username: @username, password: @password}
     end
   end
 end
