@@ -1,4 +1,5 @@
 require 'json'
+require 'nokogiri'
 require 'faraday'
 require 'open-uri'
 

@@ -1,10 +1,27 @@
 #api exception
 class ApiException < StandardError;end
 
+#monkey patch for json
+module JSON
+  def self.is_json?(foo)
+    begin
+      return false unless foo.is_a?(String)
+      JSON.parse(foo).all?
+    rescue JSON::ParserError
+      false
+    end
+  end
+end
+
+
 module Faraday
   class Response::StubHub < Response::Middleware
     def parse_body(body)
-      JSON.load(body)
+      if JSON.is_json?(body)
+        JSON.parse(body)
+      else
+        Nokogiri::XML(body)
+      end
     end
 
     def check_status(env)
