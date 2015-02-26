@@ -74,6 +74,12 @@ module StubHubApi
       Faraday::Utils.build_nested_query(options)
     end
 
+    def user_agents
+      ["Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 (FM Scene 4.6.1) ",
+       "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 (.NET CLR 3.5.30729) (Prevx 3.0.5) ",
+       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36"]
+    end
+
     def session
       return @connection if @connection
 
@@ -84,6 +90,7 @@ module StubHubApi
         conn.response :logger
         conn.adapter  Faraday.default_adapter
       end
+      @connection.headers[:user_agent] = user_agents.shuffle.first
       @connection.authorization :Bearer, token
       @connection
     end

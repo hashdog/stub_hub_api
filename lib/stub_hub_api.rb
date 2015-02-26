@@ -4,6 +4,7 @@ require 'faraday'
 require 'open-uri'
 require 'base64'
 
+
 require_relative 'stub_hub_api/version'
 require_relative 'stub_hub_api/response'
 require_relative 'stub_hub_api/base'
