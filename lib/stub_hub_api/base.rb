@@ -29,6 +29,7 @@ module StubHubApi
         req.headers['Content-Type'] = 'multipart/form-data'
         req.body = {}
         req.body[:file] = Faraday::UploadIO.new(file, 'application/pdf')
+        req.options.timeout = "2000"
       end.body
     end
 
